@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSL Certificate Checker - Free Online SSL/TLS Certificate Validator</title>
+  <meta name="description" content="Free online SSL certificate checker tool. Check SSL certificate expiry, validity, issuer, and SANs. Detect issues like expired certs, self-signed certificates, and missing www coverage.">
+  <meta name="keywords" content="SSL certificate checker, TLS certificate validator, SSL expiry checker, free SSL scan, certificate expiration monitor, crt.sh checker, SSL health check, domain SSL verification, HTTPS certificate checker, SSL tool">
+  <meta name="author" content="SSL Cert Checker">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ssl-cert-checker.pages.dev/">
+  <meta property="og:title" content="SSL Certificate Checker - Free Online SSL/TLS Validator">
+  <meta property="og:description" content="Check SSL certificate expiry, validity, issuer, and SANs. Detect certificate issues before they become problems.">
+  <meta property="og:image" content="https://ssl-cert-checker.pages.dev/og-image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ssl-cert-checker.pages.dev/">
+  <meta name="twitter:title" content="SSL Certificate Checker - Free Online SSL/TLS Validator">
+  <meta name="twitter:description" content="Check SSL certificate expiry, validity, issuer, and SANs. Detect certificate issues before they become problems.">
+
+  <!-- Google Search Console Verification -->
+  <meta name="google-site-verification" content="YOUR_GOOGLE_SITE_VERIFICATION_CODE">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://ssl-cert-checker.pages.dev/">
+
+  <!-- AdSense - Replace 'ca-pub-XXXXXXXXXXXXXXXX' with your AdSense publisher ID -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_PUBLISHER_ID" crossorigin="anonymous"></script>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SSL Certificate Checker",
+    "description": "Free online tool to check SSL certificate expiry, validity, issuer, and SANs. Detect certificate issues like expired certs, self-signed certificates, and missing www coverage.",
+    "url": "https://ssl-cert-checker.pages.dev/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Check SSL certificate expiry date",
+      "Verify certificate issuer",
+      "List all Subject Alternative Names (SANs)",
+      "Detect expired certificates",
+      "Check for self-signed certificates",
+      "Verify www. and apex domain coverage",
+      "DNS resolution check"
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0d0d0d;
+      --card-bg: #161616;
+      --input-bg: #1e1e1e;
+      --border: #2a2a2a;
+      --text: #f0f0f0;
+      --text-muted: #707070;
+      --accent: #22d3ee;
+      --accent-dim: #0891b2;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 40px 20px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-top: 8px;
+    }
+
+    .search-form {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .domain-input {
+      flex: 1;
+      padding: 16px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .domain-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    }
+
+    .domain-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .btn-check {
+      padding: 16px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      background: var(--accent);
+      border: none;
+      border-radius: 12px;
+      color: #0d0d0d;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-check:hover {
+      background: #06b6d4;
+      transform: translateY(-1px);
+    }
+
+    .btn-check:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .health-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .health-card.visible {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .domain-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      word-break: break-all;
+    }
+
+    .expiry-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .expiry-badge.good {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+    }
+
+    .expiry-badge.warning {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--warning);
+    }
+
+    .expiry-badge.danger {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--danger);
+    }
+
+    .expiry-badge svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .card-body {
+      padding: 24px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .info-item {
+      background: var(--input-bg);
+      padding: 16px;
+      border-radius: 10px;
+    }
+
+    .info-label {
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .info-value {
+      font-size: 14px;
+      color: var(--text);
+      word-break: break-word;
+    }
+
+    .info-value.mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .sans-section {
+      margin-bottom: 24px;
+    }
+
+    .sans-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .sans-label {
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+
+    .sans-count {
+      background: var(--accent-dim);
+      color: var(--text);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 10px;
+    }
+
+    .sans-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .san-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      padding: 6px 10px;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-muted);
+    }
+
+    .san-tag.wildcard {
+      color: var(--accent);
+      border-color: var(--accent-dim);
+    }
+
+    .san-tag.exact-match {
+      color: var(--success);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .coverage-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .coverage-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      background: var(--input-bg);
+      border-radius: 10px;
+    }
+
+    .coverage-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coverage-icon.yes {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--success);
+    }
+
+    .coverage-icon.no {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--danger);
+    }
+
+    .coverage-icon svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .coverage-text {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .issues-section {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    .issues-header {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .issues-header svg {
+      width: 18px;
+      height: 18px;
+      color: var(--warning);
+    }
+
+    .issue-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .issue-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .issue-item.error {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: rgba(239, 68, 68, 0.2);
+    }
+
+    .issue-icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .issue-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .issue-item:not(.error) .issue-icon svg {
+      color: var(--warning);
+    }
+
+    .issue-item.error .issue-icon svg {
+      color: var(--danger);
+    }
+
+    .issue-text {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .no-issues {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 10px;
+      color: var(--success);
+      font-size: 14px;
+    }
+
+    .no-issues svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .timestamp {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 20px;
+    }
+
+    .error-message {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      display: none;
+    }
+
+    .error-message.visible {
+      display: block;
+    }
+
+    .error-message svg {
+      width: 40px;
+      height: 40px;
+      color: var(--danger);
+      margin-bottom: 12px;
+    }
+
+    .error-message h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .error-message p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .dns-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      padding: 10px 14px;
+      background: var(--input-bg);
+      border-radius: 8px;
+      margin-bottom: 24px;
+    }
+
+    .dns-status.resolved {
+      color: var(--success);
+    }
+
+    .dns-status.unresolved {
+      color: var(--danger);
+    }
+
+    .dns-status svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 24px 16px;
+      }
+
+      .header h1 {
+        font-size: 26px;
+      }
+
+      .search-form {
+        flex-direction: column;
+      }
+
+      .btn-check {
+        width: 100%;
+      }
+
+      .coverage-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>SSL Certificate Checker</h1>
+      <p>Check SSL certificates and identify configuration issues</p>
+    </header>
+
+    <form class="search-form" id="searchForm">
+      <input type="text" class="domain-input" id="domainInput" placeholder="Enter domain (e.g., example.com)" autocomplete="off">
+      <button type="submit" class="btn-check" id="checkBtn">Check</button>
+    </form>
+
+    <div class="error-message" id="errorMessage">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <h3 id="errorTitle">Error</h3>
+      <p id="errorText">Something went wrong</p>
+    </div>
+
+    <!-- AdSense Ad Unit -->
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center; margin-bottom: 24px;"
+         data-ad-client="ca-pub-YOUR_ADSENSE_PUBLISHER_ID"
+         data-ad-slot="YOUR_AD_SLOT_ID"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <div class="health-card" id="healthCard">
+      <div class="card-header">
+        <div class="domain-title" id="cardDomain">example.com</div>
+        <div class="expiry-badge" id="expiryBadge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span id="expiryText">90 days</span>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div class="dns-status" id="dnsStatus">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+          </svg>
+          <span id="dnsText">Checking DNS...</span>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Valid From</div>
+            <div class="info-value mono" id="validFrom">—</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Valid Until</div>
+            <div class="info-value mono" id="validUntil">—</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Issuer</div>
+            <div class="info-value" id="issuerName">—</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Days Until Expiry</div>
+            <div class="info-value mono" id="daysRemaining">—</div>
+          </div>
+        </div>
+
+        <div class="sans-section">
+          <div class="sans-header">
+            <span class="sans-label">Subject Alternative Names</span>
+            <span class="sans-count" id="sansCount">0</span>
+          </div>
+          <div class="sans-list" id="sansList"></div>
+        </div>
+
+        <div class="coverage-grid">
+          <div class="coverage-item">
+            <div class="coverage-icon" id="wwwIcon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <span class="coverage-text" id="wwwText">www. covered</span>
+          </div>
+          <div class="coverage-item">
+            <div class="coverage-icon" id="apexIcon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <span class="coverage-text" id="apexText">Apex domain covered</span>
+          </div>
+        </div>
+
+        <div class="issues-section">
+          <div class="issues-header">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            Issues Found
+          </div>
+          <div id="issuesList"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timestamp" id="timestamp"></div>
+  </div>
+
+  <script>
+    const searchForm = document.getElementById('searchForm');
+    const domainInput = document.getElementById('domainInput');
+    const checkBtn = document.getElementById('checkBtn');
+    const healthCard = document.getElementById('healthCard');
+    const errorMessage = document.getElementById('errorMessage');
+
+    searchForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const domain = domainInput.value.trim();
+      if (!domain) return;
+
+      checkBtn.disabled = true;
+      checkBtn.textContent = 'Checking...';
+      hideError();
+
+      try {
+        await checkCertificate(domain);
+      } catch (err) {
+        showError('Check Failed', err.message);
+        healthCard.classList.remove('visible');
+      } finally {
+        checkBtn.disabled = false;
+        checkBtn.textContent = 'Check';
+      }
+    });
+
+    async function checkCertificate(domain) {
+      const normalizedDomain = normalizeDomain(domain);
+
+      const [certData, dnsData] = await Promise.all([
+        fetchCertData(normalizedDomain),
+        fetchDnsData(normalizedDomain)
+      ]);
+
+      displayResults(normalizedDomain, certData, dnsData);
+    }
+
+    function normalizeDomain(domain) {
+      let d = domain.toLowerCase().trim();
+      if (d.startsWith('http://')) d = d.slice(7);
+      if (d.startsWith('https://')) d = d.slice(8);
+      if (d.startsWith('www.')) d = d.slice(4);
+      const slashIdx = d.indexOf('/');
+      if (slashIdx > -1) d = d.slice(0, slashIdx);
+      return d;
+    }
+
+    async function fetchCertData(domain) {
+      const url = `https://crt.sh/?q=${encodeURIComponent(domain)}&output=json`;
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch certificate data from crt.sh');
+      }
+
+      const data = await response.json();
+
+      if (!data || data.length === 0) {
+        throw new Error('No certificates found for this domain');
+      }
+
+      const sorted = data.sort((a, b) => new Date(b.not_before) - new Date(a.not_before));
+      return sorted[0];
+    }
+
+    async function fetchDnsData(domain) {
+      try {
+        const url = `https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=A`;
+        const response = await fetch(url);
+
+        if (!response.ok) return null;
+
+        const data = await response.json();
+        return data.Status === 0 && data.Answer && data.Answer.length > 0;
+      } catch {
+        return null;
+      }
+    }
+
+    function displayResults(domain, cert, dnsResolved) {
+      document.getElementById('cardDomain').textContent = domain;
+
+      const notBefore = new Date(cert.not_before);
+      const notAfter = new Date(cert.not_after);
+      const now = new Date();
+      const daysUntilExpiry = Math.ceil((notAfter - now) / (1000 * 60 * 60 * 24));
+
+      document.getElementById('validFrom').textContent = notBefore.toISOString().split('T')[0];
+      document.getElementById('validUntil').textContent = notAfter.toISOString().split('T')[0];
+      document.getElementById('daysRemaining').textContent = daysUntilExpiry;
+
+      const issuerCN = extractIssuerCN(cert);
+      document.getElementById('issuerName').textContent = issuerCN;
+
+      const sans = parseSANs(cert);
+      displaySANs(sans, domain);
+
+      const issues = analyzeIssues(cert, sans, domain, daysUntilExpiry, issuerCN);
+      displayIssues(issues);
+
+      updateExpiryBadge(daysUntilExpiry);
+      updateCoverage(sans, domain);
+      updateDnsStatus(dnsResolved);
+      updateTimestamp();
+
+      healthCard.classList.add('visible');
+    }
+
+    function extractIssuerCN(cert) {
+      try {
+        const issuer = JSON.parse(cert.issuer);
+        if (issuer.CN) return issuer.CN;
+        if (issuer.O) return issuer.O;
+        return 'Unknown';
+      } catch {
+        return cert.issuer_name || 'Unknown';
+      }
+    }
+
+    function parseSANs(cert) {
+      try {
+        const parsed = JSON.parse(cert.subject);
+        const sanField = parsed.SAN || parsed.alt_names || parsed.aia || '';
+        if (typeof sanField === 'string') {
+          return sanField.split(',').map(s => s.trim()).filter(Boolean);
+        }
+        if (Array.isArray(sanField)) {
+          return sanField;
+        }
+
+        const rawSans = cert.san || '';
+        if (typeof rawSans === 'string') {
+          return rawSans.split(',').map(s => s.trim()).filter(Boolean);
+        }
+        return Array.isArray(rawSans) ? rawSans : [];
+      } catch {
+        const rawSans = cert.san || cert.sans || '';
+        if (typeof rawSans === 'string') {
+          return rawSans.split(',').map(s => s.trim()).filter(Boolean);
+        }
+        return Array.isArray(rawSans) ? rawSans : [];
+      }
+    }
+
+    function displaySANs(sans, domain) {
+      const sansList = document.getElementById('sansList');
+      const sansCount = document.getElementById('sansCount');
+
+      sansList.innerHTML = '';
+      sansCount.textContent = sans.length;
+
+      if (sans.length === 0) {
+        sansList.innerHTML = '<span class="san-tag">No SANs found</span>';
+        return;
+      }
+
+      sans.forEach(san => {
+        const tag = document.createElement('span');
+        tag.className = 'san-tag';
+        tag.textContent = san;
+
+        if (san.startsWith('*.')) {
+          tag.classList.add('wildcard');
+        }
+
+        sansList.appendChild(tag);
+      });
+    }
+
+    function updateExpiryBadge(days) {
+      const badge = document.getElementById('expiryBadge');
+      const text = document.getElementById('expiryText');
+
+      badge.classList.remove('good', 'warning', 'danger');
+
+      if (days <= 0) {
+        badge.classList.add('danger');
+        text.textContent = 'Expired';
+      } else if (days <= 14) {
+        badge.classList.add('danger');
+        text.textContent = `${days} days left`;
+      } else if (days <= 60) {
+        badge.classList.add('warning');
+        text.textContent = `${days} days`;
+      } else {
+        badge.classList.add('good');
+        text.textContent = `${days} days`;
+      }
+    }
+
+    function updateCoverage(sans, domain) {
+      const wwwDomain = 'www.' + domain;
+      const hasWww = sans.some(san => {
+        const s = san.toLowerCase();
+        return s === wwwDomain || s === domain;
+      });
+
+      const hasApex = sans.some(san => san.toLowerCase() === domain);
+
+      const wwwIcon = document.getElementById('wwwIcon');
+      const wwwText = document.getElementById('wwwText');
+      const apexIcon = document.getElementById('apexIcon');
+      const apexText = document.getElementById('apexText');
+
+      if (hasWww) {
+        wwwIcon.className = 'coverage-icon yes';
+        wwwIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+        wwwText.textContent = 'www. covered';
+      } else {
+        wwwIcon.className = 'coverage-icon no';
+        wwwIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+        wwwText.textContent = 'www. NOT covered';
+      }
+
+      if (hasApex) {
+        apexIcon.className = 'coverage-icon yes';
+        apexIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+        apexText.textContent = 'Apex domain covered';
+      } else {
+        apexIcon.className = 'coverage-icon no';
+        apexIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+        apexText.textContent = 'Apex NOT covered';
+      }
+    }
+
+    function updateDnsStatus(resolved) {
+      const status = document.getElementById('dnsStatus');
+      const text = document.getElementById('dnsText');
+
+      status.classList.remove('resolved', 'unresolved');
+
+      if (resolved === null) {
+        status.classList.add('unresolved');
+        text.textContent = 'DNS check unavailable';
+      } else if (resolved) {
+        status.classList.add('resolved');
+        text.textContent = 'Domain resolves to A record';
+      } else {
+        status.classList.add('unresolved');
+        text.textContent = 'Domain does not resolve';
+      }
+    }
+
+    function analyzeIssues(cert, sans, domain, days, issuerCN) {
+      const issues = [];
+
+      if (days <= 0) {
+        issues.push({
+          type: 'error',
+          text: `This certificate expired on ${new Date(cert.not_after).toISOString().split('T')[0]}. Visitors will see a security warning when accessing your site.`
+        });
+      } else if (days <= 14) {
+        issues.push({
+          type: 'warning',
+          text: `This certificate will expire in ${days} days. Renew soon to avoid service interruption.`
+        });
+      }
+
+      const selfSignedPatterns = ['self-signed', 'self signed', 'localhost', '.local'];
+      if (selfSignedPatterns.some(p => issuerCN.toLowerCase().includes(p))) {
+        issues.push({
+          type: 'error',
+          text: `The issuer "${issuerCN}" appears to be self-signed or internal. Public browsers will show security warnings for visitors.`
+        });
+      }
+
+      const isWildcardOnly = sans.length > 0 && sans.every(san => san.startsWith('*.'));
+      const hasExactMatch = sans.some(san => san.toLowerCase() === domain || san.toLowerCase() === '*.' + domain.slice(domain.indexOf('.') + 1));
+
+      if (isWildcardOnly && !hasExactMatch) {
+        issues.push({
+          type: 'warning',
+          text: `This certificate only covers wildcard patterns (e.g., *.example.com) but not the exact domain. Some services may fail validation.`
+        });
+      }
+
+      const wwwDomain = 'www.' + domain;
+      const hasWww = sans.some(san => san.toLowerCase() === wwwDomain || san.toLowerCase() === domain);
+
+      if (!hasWww && domain.includes('.')) {
+        issues.push({
+          type: 'warning',
+          text: `The "www." variant of your domain is not covered. Visitors accessing www.${domain} may see security warnings.`
+        });
+      }
+
+      return issues;
+    }
+
+    function displayIssues(issues) {
+      const container = document.getElementById('issuesList');
+      container.innerHTML = '';
+
+      if (issues.length === 0) {
+        container.innerHTML = `
+          <div class="no-issues">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            No issues detected. Your certificate appears healthy.
+          </div>
+        `;
+        return;
+      }
+
+      issues.forEach(issue => {
+        const item = document.createElement('div');
+        item.className = `issue-item ${issue.type}`;
+        item.innerHTML = `
+          <div class="issue-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              ${issue.type === 'error'
+                ? '<circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>'
+                : '<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>'
+              }
+            </svg>
+          </div>
+          <div class="issue-text">${issue.text}</div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function updateTimestamp() {
+      const now = new Date();
+      const formatted = now.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      document.getElementById('timestamp').textContent = `Last checked: ${formatted}`;
+    }
+
+    function showError(title, text) {
+      document.getElementById('errorTitle').textContent = title;
+      document.getElementById('errorText').textContent = text;
+      errorMessage.classList.add('visible');
+    }
+
+    function hideError() {
+      errorMessage.classList.remove('visible');
+    }
+  </script>
+</body>
+</html>
