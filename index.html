@@ -207,6 +207,12 @@
       animation: fadeInUp 0.5s ease-out;
     }
     .health-card.visible { display: block; }
+.fallback-section { display: none; margin-bottom: 16px; }
+.fallback-section.visible { display: block; }
+.fallback-notice { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 8px; background: rgba(255,183,77,0.1); border: 1px solid rgba(255,183,77,0.3); color: #ffb74d; font-size: 13px; }
+.fallback-notice a { color: #4dd0e1; text-decoration: underline; }
+.cert-fields { display: contents; }
+.cert-fields.hidden { display: none; }
 
     .card-header {
       padding: 24px; border-bottom: 1px solid var(--border);
@@ -454,57 +460,68 @@
           <span id="dnsText">Checking DNS...</span>
         </div>
 
-        <div class="info-grid">
-          <div class="info-item">
-            <div class="info-label">Valid From</div>
-            <div class="info-value mono" id="validFrom">—</div>
-          </div>
-          <div class="info-item">
-            <div class="info-label">Valid Until</div>
-            <div class="info-value mono" id="validUntil">—</div>
-          </div>
-          <div class="info-item">
-            <div class="info-label">Issuer</div>
-            <div class="info-value" id="issuerName">—</div>
-          </div>
-          <div class="info-item">
-            <div class="info-label">Days Left</div>
-            <div class="info-value mono" id="daysRemaining">—</div>
-          </div>
-        </div>
-
-        <div class="sans-section">
-          <div class="sans-header">
-            <span class="sans-label">Subject Alternative Names</span>
-            <span class="sans-count" id="sansCount">0</span>
-          </div>
-          <div class="sans-list" id="sansList"></div>
-        </div>
-
-        <div class="coverage-grid">
-          <div class="coverage-item">
-            <div class="coverage-icon" id="wwwIcon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <span class="coverage-text" id="wwwText">www. covered</span>
-          </div>
-          <div class="coverage-item">
-            <div class="coverage-icon" id="apexIcon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <span class="coverage-text" id="apexText">Apex domain covered</span>
-          </div>
-        </div>
-
-        <div class="issues-section">
-          <div class="issues-header">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-              <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        <div class="fallback-section" id="fallbackSection">
+          <div class="fallback-notice">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
             </svg>
-            Issues Found
+            <span>Certificate authority is currently unreachable. <a href="#" id="crtLink" target="_blank">Check manually on crt.sh →</a></span>
           </div>
-          <div id="issuesList"></div>
+        </div>
+
+        <div id="certFields" class="cert-fields">
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">Valid From</div>
+              <div class="info-value mono" id="validFrom">—</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Valid Until</div>
+              <div class="info-value mono" id="validUntil">—</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Issuer</div>
+              <div class="info-value" id="issuerName">—</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Days Left</div>
+              <div class="info-value mono" id="daysRemaining">—</div>
+            </div>
+          </div>
+
+          <div class="sans-section">
+            <div class="sans-header">
+              <span class="sans-label">Subject Alternative Names</span>
+              <span class="sans-count" id="sansCount">0</span>
+            </div>
+            <div class="sans-list" id="sansList"></div>
+          </div>
+
+          <div class="coverage-grid">
+            <div class="coverage-item">
+              <div class="coverage-icon" id="wwwIcon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="coverage-text" id="wwwText">www. covered</span>
+            </div>
+            <div class="coverage-item">
+              <div class="coverage-icon" id="apexIcon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="coverage-text" id="apexText">Apex domain covered</span>
+            </div>
+          </div>
+
+          <div class="issues-section">
+            <div class="issues-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+              Issues Found
+            </div>
+            <div id="issuesList"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -572,11 +589,21 @@
 
     async function checkCertificate(domain) {
       const normalizedDomain = normalizeDomain(domain);
-      const [certData, dnsData] = await Promise.all([
+
+      // Fetch both in parallel — DNS + cert data
+      const [certResult, dnsResolved] = await Promise.allSettled([
         fetchCertData(normalizedDomain),
         fetchDnsData(normalizedDomain)
       ]);
-      displayResults(normalizedDomain, certData, dnsData);
+
+      const hasDns = dnsResolved.status === 'fulfilled' ? dnsResolved.value : null;
+
+      if (certResult.status === 'fulfilled') {
+        displayResults(normalizedDomain, certResult.value, hasDns);
+      } else {
+        // crt.sh unavailable — fallback to DNS/connectivity info
+        displayFallback(normalizedDomain, hasDns);
+      }
     }
 
     function normalizeDomain(domain) {
@@ -638,6 +665,19 @@
 
       updateExpiryBadge(daysUntilExpiry);
       updateCoverage(sans, domain);
+      document.getElementById('fallbackSection').classList.remove('visible');
+      document.getElementById('certFields').classList.remove('hidden');
+      updateDnsStatus(dnsResolved);
+      updateTimestamp();
+    }
+
+    function displayFallback(domain, dnsResolved) {
+      document.getElementById('cardDomain').textContent = domain;
+      document.getElementById('fallbackSection').classList.add('visible');
+      document.getElementById('certFields').classList.add('hidden');
+      document.getElementById('crtLink').href = `https://crt.sh/?q=${encodeURIComponent(domain)}`;
+      document.getElementById('expiryBadge').className = 'expiry-badge';
+      document.getElementById('expiryText').textContent = 'Unavailable';
       updateDnsStatus(dnsResolved);
       updateTimestamp();
     }
