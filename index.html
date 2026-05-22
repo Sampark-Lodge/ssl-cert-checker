@@ -592,7 +592,7 @@
     async function fetchCertData(domain) {
       const crtUrl = `https://crt.sh/?q=${encodeURIComponent(domain)}&output=json`;
       const proxyUrl = `https://api.cors.syrins.tech/?url=${encodeURIComponent(crtUrl)}`;
-      const response = await fetch(proxyUrl, { signal: AbortSignal.timeout(15000) });
+      const response = await fetch(proxyUrl, { signal: AbortSignal.timeout(25000) });
       if (!response.ok) throw new Error(`Certificate authority returned HTTP ${response.status}`);
       const data = await response.json();
       if (!Array.isArray(data) || data.length === 0) throw new Error('No certificates found for this domain');
