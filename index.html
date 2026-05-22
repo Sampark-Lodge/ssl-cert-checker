@@ -3,596 +3,453 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SSL Certificate Checker - Free Online SSL/TLS Certificate Validator</title>
-  <meta name="description" content="Free online SSL certificate checker tool. Check SSL certificate expiry, validity, issuer, and SANs. Detect issues like expired certs, self-signed certificates, and missing www coverage.">
-  <meta name="keywords" content="SSL certificate checker, TLS certificate validator, SSL expiry checker, free SSL scan, certificate expiration monitor, crt.sh checker, SSL health check, domain SSL verification, HTTPS certificate checker, SSL tool">
-  <meta name="author" content="SSL Cert Checker">
+  <title>SSL Certificate Checker — Free Online SSL/TLS Certificate Validator</title>
+  <meta name="description" content="Free online SSL certificate checker tool. Check SSL certificate expiry, validity, issuer, and SANs. Detect expired certs, self-signed certificates, and missing www coverage.">
+  <meta name="keywords" content="SSL certificate checker, TLS validator, SSL expiry checker, free SSL scan, certificate expiration, crt.sh, SSL health check, domain SSL verification">
   <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  <meta name="revisit-after" content="7 days">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ssl-cert-checker.pages.dev/">
-  <meta property="og:title" content="SSL Certificate Checker - Free Online SSL/TLS Validator">
-  <meta property="og:description" content="Check SSL certificate expiry, validity, issuer, and SANs. Detect certificate issues before they become problems.">
-  <meta property="og:image" content="https://ssl-cert-checker.pages.dev/og-image.png">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://ssl-cert-checker.pages.dev/">
-  <meta name="twitter:title" content="SSL Certificate Checker - Free Online SSL/TLS Validator">
-  <meta name="twitter:description" content="Check SSL certificate expiry, validity, issuer, and SANs. Detect certificate issues before they become problems.">
-
-  <!-- Google Search Console Verification -->
   <meta name="google-adsense-account" content="ca-pub-9325652578538740">
-  <meta name="google-site-verification" content="google36a7bd06114b150d">
+  <link rel="canonical" href="https://sampark-lodge.github.io/ssl-cert-checker/">
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://ssl-cert-checker.pages.dev/">
+  <meta property="og:title" content="SSL Certificate Checker — Free SSL/TLS Validator">
+  <meta property="og:description" content="Check SSL certificate expiry, validity, issuer, and SANs. Detect certificate issues before they become problems.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sampark-lodge.github.io/ssl-cert-checker/">
+  <meta property="og:image" content="https://sampark-lodge.github.io/ssl-cert-checker/preview.png">
 
-  <!-- AdSense - Replace 'ca-pub-XXXXXXXXXXXXXXXX' with your AdSense publisher ID -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-ca-pub-9325652578538740" crossorigin="anonymous"></script>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SSL Certificate Checker — Free SSL/TLS Validator">
+  <meta name="twitter:description" content="Check SSL certificate expiry, validity, issuer, and SANs. Detect issues before they become problems.">
 
-  <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "SSL Certificate Checker",
-    "description": "Free online tool to check SSL certificate expiry, validity, issuer, and SANs. Detect certificate issues like expired certs, self-signed certificates, and missing www coverage.",
-    "url": "https://ssl-cert-checker.pages.dev/",
+    "description": "Free online tool to check SSL certificate expiry, validity, issuer, and SANs.",
+    "url": "https://sampark-lodge.github.io/ssl-cert-checker/",
     "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "Web Browser",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Organization", "name": "Sampark Lodge" },
     "featureList": [
       "Check SSL certificate expiry date",
       "Verify certificate issuer",
       "List all Subject Alternative Names (SANs)",
       "Detect expired certificates",
-      "Check for self-signed certificates",
-      "Verify www. and apex domain coverage",
-      "DNS resolution check"
+      "DNS resolution check",
+      "www and apex domain coverage"
     ]
   }
   </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9325652578538740" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0d0d0d;
-      --card-bg: #161616;
-      --input-bg: #1e1e1e;
-      --border: #2a2a2a;
-      --text: #f0f0f0;
-      --text-muted: #707070;
+      --bg: #09090b;
+      --surface: #18181b;
+      --surface-hover: #27272a;
+      --border: #27272a;
+      --text: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
       --accent: #22d3ee;
-      --accent-dim: #0891b2;
+      --accent-glow: rgba(34, 211, 238, 0.15);
+      --accent-subtle: rgba(34, 211, 238, 0.08);
       --success: #10b981;
       --warning: #f59e0b;
       --danger: #ef4444;
+      --radius: 12px;
+      --radius-sm: 8px;
     }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      padding: 40px 20px;
-      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .bg-orbs {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .bg-orbs .orb {
+      position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.3;
+      animation: orbFloat 20s ease-in-out infinite;
+    }
+    .bg-orbs .orb:nth-child(1) {
+      width: 500px; height: 500px; background: rgba(34, 211, 238, 0.10);
+      top: -10%; left: -10%; animation-duration: 25s;
+    }
+    .bg-orbs .orb:nth-child(2) {
+      width: 400px; height: 400px; background: rgba(16, 185, 129, 0.05);
+      bottom: -5%; right: -5%; animation-delay: -7s; animation-duration: 20s;
+    }
+    .bg-orbs .orb:nth-child(3) {
+      width: 300px; height: 300px; background: rgba(34, 211, 238, 0.05);
+      top: 40%; left: 60%; animation-delay: -14s; animation-duration: 30s;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(80px, -60px) scale(1.1); }
+      50% { transform: translate(-40px, 80px) scale(0.9); }
+      75% { transform: translate(60px, 40px) scale(1.05); }
+    }
+
+    .grid-overlay {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
     }
 
     .container {
-      max-width: 640px;
-      margin: 0 auto;
+      position: relative; z-index: 1;
+      width: 100%; max-width: 640px;
+      padding: 32px 20px 48px;
+      animation: containerEnter 0.8s ease-out;
+    }
+    @keyframes containerEnter {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    .header {
-      text-align: center;
-      margin-bottom: 48px;
+    .header { text-align: center; margin-bottom: 36px; animation: fadeInUp 0.6s ease-out 0.1s both; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; background: var(--accent-subtle);
+      border: 1px solid rgba(34, 211, 238, 0.15); border-radius: 100px;
+      font-size: 12px; font-weight: 500; color: var(--accent);
+      margin-bottom: 16px; animation: pulseGlow 3s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+      50% { box-shadow: 0 0 20px 0 rgba(34, 211, 238, 0.1); }
+    }
+    .header-badge .dot {
+      width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
     }
 
     .header h1 {
-      font-size: 32px;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size: 36px; font-weight: 800; letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #fafafa 0%, #22d3ee 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; line-height: 1.15;
     }
+    .header p { color: var(--text-secondary); font-size: 15px; margin-top: 10px; }
 
-    .header p {
-      color: var(--text-muted);
-      font-size: 15px;
-      margin-top: 8px;
-    }
-
+    /* ── Search Form ── */
     .search-form {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 32px;
+      display: flex; gap: 12px; margin-bottom: 28px;
+      animation: fadeInUp 0.6s ease-out 0.15s both;
     }
 
     .domain-input {
-      flex: 1;
-      padding: 16px 20px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 16px;
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: var(--text);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      flex: 1; padding: 16px 20px;
+      font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400;
+      background: rgba(39, 39, 42, 0.6);
+      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      color: var(--text); outline: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
+    .domain-input::placeholder { color: #3f3f46; }
+    .domain-input:hover { border-color: #3f3f46; background: rgba(39, 39, 42, 0.8); }
     .domain-input:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
-    }
-
-    .domain-input::placeholder {
-      color: var(--text-muted);
-    }
-
-    .btn-check {
-      padding: 16px 28px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 600;
-      background: var(--accent);
-      border: none;
-      border-radius: 12px;
-      color: #0d0d0d;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-
-    .btn-check:hover {
-      background: #06b6d4;
+      border-color: var(--accent); background: rgba(39, 39, 42, 0.9);
+      box-shadow: 0 0 0 4px var(--accent-glow), 0 0 30px rgba(34, 211, 238, 0.05);
       transform: translateY(-1px);
     }
 
-    .btn-check:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
+    .btn-check {
+      padding: 16px 28px; font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 600; border: none;
+      border-radius: var(--radius-sm); cursor: pointer; position: relative;
+      overflow: hidden; white-space: nowrap;
+      background: linear-gradient(135deg, #22d3ee, #06b6d4);
+      color: #042f2e; box-shadow: 0 4px 20px var(--accent-glow);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    .btn-check:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+    .btn-check:active { transform: translateY(0) scale(0.97); }
+    .btn-check:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 
+    /* ── Results Card ── */
     .health-card {
-      background: var(--card-bg);
+      background: rgba(24, 24, 27, 0.8);
+      backdrop-filter: blur(20px);
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
       display: none;
+      animation: fadeInUp 0.5s ease-out;
     }
-
-    .health-card.visible {
-      display: block;
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .health-card.visible { display: block; }
 
     .card-header {
-      padding: 24px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
+      padding: 24px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
     }
-
-    .domain-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--text);
-      word-break: break-all;
-    }
+    .domain-title { font-size: 20px; font-weight: 700; word-break: break-all; color: var(--text); }
 
     .expiry-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 100px;
+      font-size: 13px; font-weight: 600; transition: all 0.3s;
     }
+    .expiry-badge.good { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+    .expiry-badge.warning { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+    .expiry-badge.danger { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+    .expiry-badge svg { width: 16px; height: 16px; }
 
-    .expiry-badge.good {
-      background: rgba(16, 185, 129, 0.15);
-      color: var(--success);
-    }
+    .card-body { padding: 24px; }
 
-    .expiry-badge.warning {
-      background: rgba(245, 158, 11, 0.15);
-      color: var(--warning);
+    .dns-status {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; padding: 12px 16px;
+      background: rgba(39, 39, 42, 0.4); border-radius: var(--radius-sm);
+      margin-bottom: 20px;
     }
-
-    .expiry-badge.danger {
-      background: rgba(239, 68, 68, 0.15);
-      color: var(--danger);
-    }
-
-    .expiry-badge svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .card-body {
-      padding: 24px;
-    }
+    .dns-status.resolved { color: var(--success); }
+    .dns-status.unresolved { color: var(--danger); }
+    .dns-status svg { width: 16px; height: 16px; flex-shrink: 0; }
 
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-bottom: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px; margin-bottom: 20px;
     }
-
     .info-item {
-      background: var(--input-bg);
-      padding: 16px;
-      border-radius: 10px;
+      background: rgba(39, 39, 42, 0.4);
+      padding: 16px; border-radius: var(--radius-sm);
+      transition: background 0.3s;
     }
-
+    .info-item:hover { background: rgba(39, 39, 42, 0.7); }
     .info-label {
-      font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 6px;
     }
+    .info-value { font-size: 14px; color: var(--text); word-break: break-word; }
+    .info-value.mono { font-family: 'JetBrains Mono', monospace; }
 
-    .info-value {
-      font-size: 14px;
-      color: var(--text);
-      word-break: break-word;
-    }
-
-    .info-value.mono {
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .sans-section {
-      margin-bottom: 24px;
-    }
-
-    .sans-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
+    .sans-section { margin-bottom: 20px; }
+    .sans-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
     .sans-label {
-      font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-muted);
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-muted);
     }
-
     .sans-count {
-      background: var(--accent-dim);
-      color: var(--text);
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 10px;
+      font-size: 10px; font-weight: 700;
+      background: var(--accent-subtle); color: var(--accent);
+      padding: 3px 10px; border-radius: 100px;
     }
-
-    .sans-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
+    .sans-list { display: flex; flex-wrap: wrap; gap: 8px; }
     .san-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      padding: 6px 10px;
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      padding: 6px 12px;
+      background: rgba(39, 39, 42, 0.4);
+      border: 1px solid var(--border); border-radius: 6px;
+      color: var(--text-muted); transition: all 0.3s;
     }
-
-    .san-tag.wildcard {
-      color: var(--accent);
-      border-color: var(--accent-dim);
-    }
-
-    .san-tag.exact-match {
-      color: var(--success);
-      border-color: rgba(16, 185, 129, 0.3);
-    }
+    .san-tag:hover { border-color: var(--accent); color: var(--text); }
+    .san-tag.wildcard { color: var(--accent); border-color: rgba(34, 211, 238, 0.3); }
+    .san-tag.exact-match { color: var(--success); border-color: rgba(16, 185, 129, 0.3); }
 
     .coverage-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 24px;
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 12px; margin-bottom: 20px;
     }
-
     .coverage-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: flex; align-items: center; gap: 10px;
       padding: 14px 16px;
-      background: var(--input-bg);
-      border-radius: 10px;
+      background: rgba(39, 39, 42, 0.4);
+      border-radius: var(--radius-sm); transition: background 0.3s;
     }
-
+    .coverage-item:hover { background: rgba(39, 39, 42, 0.7); }
     .coverage-icon {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
+    .coverage-icon.yes { background: rgba(16, 185, 129, 0.2); color: var(--success); }
+    .coverage-icon.no { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
+    .coverage-icon svg { width: 14px; height: 14px; }
+    .coverage-text { font-size: 14px; color: var(--text-secondary); }
 
-    .coverage-icon.yes {
-      background: rgba(16, 185, 129, 0.2);
-      color: var(--success);
-    }
-
-    .coverage-icon.no {
-      background: rgba(239, 68, 68, 0.2);
-      color: var(--danger);
-    }
-
-    .coverage-icon svg {
-      width: 12px;
-      height: 12px;
-    }
-
-    .coverage-text {
-      font-size: 14px;
-      color: var(--text);
-    }
-
-    .issues-section {
-      border-top: 1px solid var(--border);
-      padding-top: 24px;
-    }
-
+    .issues-section { border-top: 1px solid var(--border); padding-top: 20px; }
     .issues-header {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-size: 14px; font-weight: 600; color: var(--text);
+      margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
     }
-
-    .issues-header svg {
-      width: 18px;
-      height: 18px;
-      color: var(--warning);
-    }
+    .issues-header svg { width: 18px; height: 18px; color: var(--warning); }
 
     .issue-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+      display: flex; align-items: flex-start; gap: 12px;
       padding: 14px 16px;
       background: rgba(245, 158, 11, 0.08);
       border: 1px solid rgba(245, 158, 11, 0.2);
-      border-radius: 10px;
-      margin-bottom: 10px;
+      border-radius: var(--radius-sm); margin-bottom: 10px;
+      transition: transform 0.3s;
     }
-
-    .issue-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .issue-item.error {
-      background: rgba(239, 68, 68, 0.08);
-      border-color: rgba(239, 68, 68, 0.2);
-    }
-
-    .issue-icon {
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .issue-icon svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .issue-item:not(.error) .issue-icon svg {
-      color: var(--warning);
-    }
-
-    .issue-item.error .issue-icon svg {
-      color: var(--danger);
-    }
-
-    .issue-text {
-      font-size: 14px;
-      color: var(--text);
-      line-height: 1.5;
-    }
+    .issue-item:hover { transform: translateX(4px); }
+    .issue-item:last-child { margin-bottom: 0; }
+    .issue-item.error { background: rgba(239, 68, 68, 0.08); border-color: rgba(239, 68, 68, 0.2); }
+    .issue-icon { flex-shrink: 0; margin-top: 2px; }
+    .issue-icon svg { width: 16px; height: 16px; }
+    .issue-item:not(.error) .issue-icon svg { color: var(--warning); }
+    .issue-item.error .issue-icon svg { color: var(--danger); }
+    .issue-text { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
 
     .no-issues {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: flex; align-items: center; gap: 10px;
       padding: 14px 16px;
       background: rgba(16, 185, 129, 0.08);
       border: 1px solid rgba(16, 185, 129, 0.2);
-      border-radius: 10px;
-      color: var(--success);
-      font-size: 14px;
+      border-radius: var(--radius-sm); color: var(--success); font-size: 14px;
     }
-
-    .no-issues svg {
-      width: 18px;
-      height: 18px;
-    }
+    .no-issues svg { width: 18px; height: 18px; flex-shrink: 0; }
 
     .timestamp {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 12px;
-      margin-top: 20px;
+      text-align: center; color: var(--text-muted);
+      font-size: 12px; margin-top: 16px;
     }
 
     .error-message {
-      background: rgba(239, 68, 68, 0.1);
+      background: rgba(239, 68, 68, 0.08);
       border: 1px solid rgba(239, 68, 68, 0.2);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      display: none;
+      border-radius: var(--radius); padding: 24px;
+      text-align: center; display: none;
+      animation: fadeInUp 0.4s ease-out;
+    }
+    .error-message.visible { display: block; }
+    .error-message svg { width: 40px; height: 40px; color: var(--danger); margin-bottom: 12px; }
+    .error-message h3 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+    .error-message p { font-size: 14px; color: var(--text-muted); }
+
+    .loading-spinner {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; padding: 40px 0;
+    }
+    .spinner {
+      width: 24px; height: 24px; border: 3px solid var(--border);
+      border-top-color: var(--accent); border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { font-size: 14px; color: var(--text-muted); }
+
+    .adsense-container {
+      min-height: 100px; margin-bottom: 24px;
+      background: rgba(24, 24, 27, 0.4);
+      border: 1px dashed var(--border); border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      animation: fadeInUp 0.6s ease-out 0.5s both;
+    }
+    .adsense-container .ad-placeholder {
+      font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em;
     }
 
-    .error-message.visible {
-      display: block;
-    }
-
-    .error-message svg {
-      width: 40px;
-      height: 40px;
-      color: var(--danger);
-      margin-bottom: 12px;
-    }
-
-    .error-message h3 {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .error-message p {
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    .dns-status {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      padding: 10px 14px;
-      background: var(--input-bg);
-      border-radius: 8px;
-      margin-bottom: 24px;
-    }
-
-    .dns-status.resolved {
-      color: var(--success);
-    }
-
-    .dns-status.unresolved {
-      color: var(--danger);
-    }
-
-    .dns-status svg {
-      width: 16px;
-      height: 16px;
-    }
+    .footer { text-align: center; padding: 16px 0 8px; animation: fadeInUp 0.6s ease-out 0.55s both; }
+    .footer p { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; }
+    .footer svg { width: 14px; height: 14px; vertical-align: middle; }
+    .footer a { color: var(--accent); text-decoration: none; transition: color 0.3s; }
+    .footer a:hover { color: #7dd3fc; text-decoration: underline; }
+    .footer .sep { color: var(--border); }
 
     @media (max-width: 480px) {
-      body {
-        padding: 24px 16px;
-      }
+      .container { padding: 20px 16px 32px; }
+      .header h1 { font-size: 28px; }
+      .search-form { flex-direction: column; }
+      .btn-check { width: 100%; }
+      .coverage-grid { grid-template-columns: 1fr; }
+      .card-header { flex-direction: column; align-items: flex-start; }
+      .bg-orbs .orb { filter: blur(80px); }
+      .bg-orbs .orb:nth-child(1) { width: 300px; height: 300px; }
+      .bg-orbs .orb:nth-child(2) { width: 250px; height: 250px; }
+      .bg-orbs .orb:nth-child(3) { width: 200px; height: 200px; }
+    }
 
-      .header h1 {
-        font-size: 26px;
-      }
-
-      .search-form {
-        flex-direction: column;
-      }
-
-      .btn-check {
-        width: 100%;
-      }
-
-      .coverage-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
+
+  <div class="bg-orbs">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
+  <div class="grid-overlay"></div>
+
   <div class="container">
-    <header class="header">
-      <h1>SSL Certificate Checker</h1>
-      <p>Check SSL certificates and identify configuration issues</p>
-    </header>
+    <div class="header">
+      <div class="header-badge">
+        <span class="dot"></span>
+        Free · No Signup
+      </div>
+      <h1>SSL Checker</h1>
+      <p>Check SSL certificates for any domain. Expiry, issuer, SANs, issues — instantly.</p>
+    </div>
 
     <form class="search-form" id="searchForm">
-      <input type="text" class="domain-input" id="domainInput" placeholder="Enter domain (e.g., example.com)" autocomplete="off">
-      <button type="submit" class="btn-check" id="checkBtn">Check</button>
+      <input type="text" class="domain-input" id="domainInput" placeholder="Enter domain (e.g., google.com)" autocomplete="off" spellcheck="false">
+      <button type="submit" class="btn-check" id="checkBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Check
+      </button>
     </form>
 
     <div class="error-message" id="errorMessage">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="12" y1="8" x2="12" y2="12"></line>
-        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
       </svg>
       <h3 id="errorTitle">Error</h3>
       <p id="errorText">Something went wrong</p>
     </div>
 
-    <!-- AdSense Ad Unit -->
-    <ins class="adsbygoogle"
-         style="display:block; text-align:center; margin-bottom: 24px;"
-         data-ad-client="ca-pub-ca-pub-9325652578538740"
-         data-ad-slot="YOUR_AD_SLOT_ID"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <div class="adsense-container">
+      <span class="ad-placeholder">— Advertisement —</span>
+    </div>
 
     <div class="health-card" id="healthCard">
       <div class="card-header">
-        <div class="domain-title" id="cardDomain">example.com</div>
+        <div class="domain-title" id="cardDomain">—</div>
         <div class="expiry-badge" id="expiryBadge">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
           </svg>
-          <span id="expiryText">90 days</span>
+          <span id="expiryText">—</span>
         </div>
       </div>
 
       <div class="card-body">
         <div class="dns-status" id="dnsStatus">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
           </svg>
           <span id="dnsText">Checking DNS...</span>
         </div>
@@ -611,7 +468,7 @@
             <div class="info-value" id="issuerName">—</div>
           </div>
           <div class="info-item">
-            <div class="info-label">Days Until Expiry</div>
+            <div class="info-label">Days Left</div>
             <div class="info-value mono" id="daysRemaining">—</div>
           </div>
         </div>
@@ -627,17 +484,13 @@
         <div class="coverage-grid">
           <div class="coverage-item">
             <div class="coverage-icon" id="wwwIcon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
             <span class="coverage-text" id="wwwText">www. covered</span>
           </div>
           <div class="coverage-item">
             <div class="coverage-icon" id="apexIcon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
             <span class="coverage-text" id="apexText">Apex domain covered</span>
           </div>
@@ -645,10 +498,9 @@
 
         <div class="issues-section">
           <div class="issues-header">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-              <line x1="12" y1="9" x2="12" y2="13"></line>
-              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
             </svg>
             Issues Found
           </div>
@@ -658,6 +510,22 @@
     </div>
 
     <div class="timestamp" id="timestamp"></div>
+
+    <div class="footer">
+      <p>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        Powered by crt.sh &amp; Google DNS. No data stored.
+        <span class="sep">·</span>
+        Made for Sampark Lodge
+      </p>
+      <p style="margin-top: 8px; font-size: 12px;">
+        <a href="https://sampark-lodge.github.io/vcard-qr/">vCard QR</a>
+        <span class="sep">·</span>
+        <a href="https://sampark-lodge.github.io/gps-card/">GPS Card</a>
+      </p>
+    </div>
   </div>
 
   <script>
@@ -673,28 +541,38 @@
       if (!domain) return;
 
       checkBtn.disabled = true;
-      checkBtn.textContent = 'Checking...';
+      checkBtn.innerHTML = '<div class="spinner" style="width:18px;height:18px;border-width:2px;margin:0 auto;"></div>';
       hideError();
+      healthCard.classList.remove('visible');
 
       try {
         await checkCertificate(domain);
+        healthCard.classList.add('visible');
       } catch (err) {
         showError('Check Failed', err.message);
         healthCard.classList.remove('visible');
       } finally {
         checkBtn.disabled = false;
-        checkBtn.textContent = 'Check';
+        checkBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Check';
       }
     });
 
+    function hideError() {
+      errorMessage.classList.remove('visible');
+    }
+
+    function showError(title, text) {
+      document.getElementById('errorTitle').textContent = title;
+      document.getElementById('errorText').textContent = text;
+      errorMessage.classList.add('visible');
+    }
+
     async function checkCertificate(domain) {
       const normalizedDomain = normalizeDomain(domain);
-
       const [certData, dnsData] = await Promise.all([
         fetchCertData(normalizedDomain),
         fetchDnsData(normalizedDomain)
       ]);
-
       displayResults(normalizedDomain, certData, dnsData);
     }
 
@@ -711,16 +589,10 @@
     async function fetchCertData(domain) {
       const url = `https://crt.sh/?q=${encodeURIComponent(domain)}&output=json`;
       const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch certificate data from crt.sh');
-      }
+      if (!response.ok) throw new Error('Failed to fetch certificate data from crt.sh');
 
       const data = await response.json();
-
-      if (!data || data.length === 0) {
-        throw new Error('No certificates found for this domain');
-      }
+      if (!data || data.length === 0) throw new Error('No certificates found for this domain');
 
       const sorted = data.sort((a, b) => new Date(b.not_before) - new Date(a.not_before));
       return sorted[0];
@@ -730,9 +602,7 @@
       try {
         const url = `https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=A`;
         const response = await fetch(url);
-
         if (!response.ok) return null;
-
         const data = await response.json();
         return data.Status === 0 && data.Answer && data.Answer.length > 0;
       } catch {
@@ -758,15 +628,13 @@
       const sans = parseSANs(cert);
       displaySANs(sans, domain);
 
-      const issues = analyzeIssues(cert, sans, domain, daysUntilExpiry, issuerCN);
+      const issues = analyzeIssues(cert, sans, domain, daysUntilExpiry, issuerCN, dnsResolved);
       displayIssues(issues);
 
       updateExpiryBadge(daysUntilExpiry);
       updateCoverage(sans, domain);
       updateDnsStatus(dnsResolved);
       updateTimestamp();
-
-      healthCard.classList.add('visible');
     }
 
     function extractIssuerCN(cert) {
@@ -787,164 +655,58 @@
         if (typeof sanField === 'string') {
           return sanField.split(',').map(s => s.trim()).filter(Boolean);
         }
-        if (Array.isArray(sanField)) {
-          return sanField;
-        }
-
-        const rawSans = cert.san || '';
-        if (typeof rawSans === 'string') {
-          return rawSans.split(',').map(s => s.trim()).filter(Boolean);
-        }
-        return Array.isArray(rawSans) ? rawSans : [];
+        if (Array.isArray(sanField)) return sanField;
+        return [];
       } catch {
-        const rawSans = cert.san || cert.sans || '';
-        if (typeof rawSans === 'string') {
-          return rawSans.split(',').map(s => s.trim()).filter(Boolean);
-        }
-        return Array.isArray(rawSans) ? rawSans : [];
+        return [];
       }
     }
 
     function displaySANs(sans, domain) {
-      const sansList = document.getElementById('sansList');
-      const sansCount = document.getElementById('sansCount');
+      const container = document.getElementById('sansList');
+      const count = document.getElementById('sansCount');
+      count.textContent = sans.length;
 
-      sansList.innerHTML = '';
-      sansCount.textContent = sans.length;
-
-      if (sans.length === 0) {
-        sansList.innerHTML = '<span class="san-tag">No SANs found</span>';
-        return;
-      }
-
-      sans.forEach(san => {
-        const tag = document.createElement('span');
-        tag.className = 'san-tag';
-        tag.textContent = san;
-
-        if (san.startsWith('*.')) {
-          tag.classList.add('wildcard');
-        }
-
-        sansList.appendChild(tag);
-      });
+      container.innerHTML = sans.map(san => {
+        let cls = 'san-tag';
+        if (san.startsWith('*.')) cls += ' wildcard';
+        if (san === domain || san === `www.${domain}`) cls += ' exact-match';
+        return `<span class="${cls}">${san}</span>`;
+      }).join('');
     }
 
-    function updateExpiryBadge(days) {
-      const badge = document.getElementById('expiryBadge');
-      const text = document.getElementById('expiryText');
-
-      badge.classList.remove('good', 'warning', 'danger');
-
-      if (days <= 0) {
-        badge.classList.add('danger');
-        text.textContent = 'Expired';
-      } else if (days <= 14) {
-        badge.classList.add('danger');
-        text.textContent = `${days} days left`;
-      } else if (days <= 60) {
-        badge.classList.add('warning');
-        text.textContent = `${days} days`;
-      } else {
-        badge.classList.add('good');
-        text.textContent = `${days} days`;
-      }
-    }
-
-    function updateCoverage(sans, domain) {
-      const wwwDomain = 'www.' + domain;
-      const hasWww = sans.some(san => {
-        const s = san.toLowerCase();
-        return s === wwwDomain || s === domain;
-      });
-
-      const hasApex = sans.some(san => san.toLowerCase() === domain);
-
-      const wwwIcon = document.getElementById('wwwIcon');
-      const wwwText = document.getElementById('wwwText');
-      const apexIcon = document.getElementById('apexIcon');
-      const apexText = document.getElementById('apexText');
-
-      if (hasWww) {
-        wwwIcon.className = 'coverage-icon yes';
-        wwwIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-        wwwText.textContent = 'www. covered';
-      } else {
-        wwwIcon.className = 'coverage-icon no';
-        wwwIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
-        wwwText.textContent = 'www. NOT covered';
-      }
-
-      if (hasApex) {
-        apexIcon.className = 'coverage-icon yes';
-        apexIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-        apexText.textContent = 'Apex domain covered';
-      } else {
-        apexIcon.className = 'coverage-icon no';
-        apexIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
-        apexText.textContent = 'Apex NOT covered';
-      }
-    }
-
-    function updateDnsStatus(resolved) {
-      const status = document.getElementById('dnsStatus');
-      const text = document.getElementById('dnsText');
-
-      status.classList.remove('resolved', 'unresolved');
-
-      if (resolved === null) {
-        status.classList.add('unresolved');
-        text.textContent = 'DNS check unavailable';
-      } else if (resolved) {
-        status.classList.add('resolved');
-        text.textContent = 'Domain resolves to A record';
-      } else {
-        status.classList.add('unresolved');
-        text.textContent = 'Domain does not resolve';
-      }
-    }
-
-    function analyzeIssues(cert, sans, domain, days, issuerCN) {
+    function analyzeIssues(cert, sans, domain, daysUntilExpiry, issuerCN, dnsResolved) {
       const issues = [];
 
-      if (days <= 0) {
-        issues.push({
-          type: 'error',
-          text: `This certificate expired on ${new Date(cert.not_after).toISOString().split('T')[0]}. Visitors will see a security warning when accessing your site.`
-        });
-      } else if (days <= 14) {
-        issues.push({
-          type: 'warning',
-          text: `This certificate will expire in ${days} days. Renew soon to avoid service interruption.`
-        });
+      if (daysUntilExpiry < 0) {
+        issues.push({ type: 'error', text: 'Certificate has expired!' });
+      } else if (daysUntilExpiry < 15) {
+        issues.push({ type: 'error', text: `Certificate expires in ${daysUntilExpiry} day${daysUntilExpiry === 1 ? '' : 's'}!` });
+      } else if (daysUntilExpiry < 30) {
+        issues.push({ type: 'warning', text: `Certificate expires in ${daysUntilExpiry} day${daysUntilExpiry === 1 ? '' : 's'}. Renew soon.` });
+      } else if (daysUntilExpiry < 60) {
+        issues.push({ type: 'warning', text: `Certificate expires in ${daysUntilExpiry} day${daysUntilExpiry === 1 ? '' : 's'}.` });
       }
 
-      const selfSignedPatterns = ['self-signed', 'self signed', 'localhost', '.local'];
-      if (selfSignedPatterns.some(p => issuerCN.toLowerCase().includes(p))) {
-        issues.push({
-          type: 'error',
-          text: `The issuer "${issuerCN}" appears to be self-signed or internal. Public browsers will show security warnings for visitors.`
-        });
+      try {
+        const parsedIssuer = JSON.parse(cert.issuer);
+        if (parsedIssuer.O && parsedIssuer.O.toLowerCase().includes('self-signed')) {
+          issues.push({ type: 'warning', text: 'Certificate appears to be self-signed.' });
+        }
+      } catch {}
+
+      if (!dnsResolved) {
+        issues.push({ type: 'error', text: 'Domain does not resolve via DNS — the site may be unreachable.' });
       }
 
-      const isWildcardOnly = sans.length > 0 && sans.every(san => san.startsWith('*.'));
-      const hasExactMatch = sans.some(san => san.toLowerCase() === domain || san.toLowerCase() === '*.' + domain.slice(domain.indexOf('.') + 1));
+      const hasWWW = sans.some(s => s === `www.${domain}`) || sans.some(s => s === domain);
+      const hasApex = sans.some(s => s === domain);
 
-      if (isWildcardOnly && !hasExactMatch) {
-        issues.push({
-          type: 'warning',
-          text: `This certificate only covers wildcard patterns (e.g., *.example.com) but not the exact domain. Some services may fail validation.`
-        });
+      if (!hasWWW && sans.length > 0) {
+        issues.push({ type: 'warning', text: 'Certificate does not cover the www. subdomain.' });
       }
-
-      const wwwDomain = 'www.' + domain;
-      const hasWww = sans.some(san => san.toLowerCase() === wwwDomain || san.toLowerCase() === domain);
-
-      if (!hasWww && domain.includes('.')) {
-        issues.push({
-          type: 'warning',
-          text: `The "www." variant of your domain is not covered. Visitors accessing www.${domain} may see security warnings.`
-        });
+      if (!hasApex && sans.length > 0) {
+        issues.push({ type: 'warning', text: 'Certificate does not cover the bare (apex) domain.' });
       }
 
       return issues;
@@ -952,60 +714,85 @@
 
     function displayIssues(issues) {
       const container = document.getElementById('issuesList');
-      container.innerHTML = '';
 
       if (issues.length === 0) {
-        container.innerHTML = `
-          <div class="no-issues">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-            No issues detected. Your certificate appears healthy.
-          </div>
-        `;
+        container.innerHTML = '<div class="no-issues"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> No issues found — certificate looks healthy.</div>';
         return;
       }
 
-      issues.forEach(issue => {
-        const item = document.createElement('div');
-        item.className = `issue-item ${issue.type}`;
-        item.innerHTML = `
+      container.innerHTML = issues.map(issue => `
+        <div class="issue-item ${issue.type === 'error' ? 'error' : ''}">
           <div class="issue-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               ${issue.type === 'error'
-                ? '<circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>'
-                : '<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>'
-              }
+                ? '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>'
+                : '<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>'}
             </svg>
           </div>
           <div class="issue-text">${issue.text}</div>
-        `;
-        container.appendChild(item);
-      });
+        </div>
+      `).join('');
+    }
+
+    function updateExpiryBadge(daysUntilExpiry) {
+      const badge = document.getElementById('expiryBadge');
+      const text = document.getElementById('expiryText');
+
+      badge.className = 'expiry-badge';
+
+      if (daysUntilExpiry < 0) {
+        badge.classList.add('danger');
+        text.textContent = 'Expired!';
+      } else if (daysUntilExpiry < 15) {
+        badge.classList.add('danger');
+        text.textContent = `${daysUntilExpiry} day${daysUntilExpiry === 1 ? '' : 's'}`;
+      } else if (daysUntilExpiry < 30) {
+        badge.classList.add('warning');
+        text.textContent = `${daysUntilExpiry} day${daysUntilExpiry === 1 ? '' : 's'}`;
+      } else if (daysUntilExpiry < 60) {
+        badge.classList.add('warning');
+        text.textContent = `${daysUntilExpiry} day${daysUntilExpiry === 1 ? '' : 's'}`;
+      } else {
+        badge.classList.add('good');
+        text.textContent = `${daysUntilExpiry} day${daysUntilExpiry === 1 ? '' : 's'}`;
+      }
+    }
+
+    function updateCoverage(sans, domain) {
+      const hasWWW = sans.some(s => s === `www.${domain}`) || sans.some(s => s === domain);
+      const hasApex = sans.some(s => s === domain);
+
+      const wwwIcon = document.getElementById('wwwIcon');
+      const wwwText = document.getElementById('wwwText');
+      wwwIcon.className = `coverage-icon ${hasWWW ? 'yes' : 'no'}`;
+      wwwText.textContent = hasWWW ? 'www. covered' : 'www. missing';
+
+      const apexIcon = document.getElementById('apexIcon');
+      const apexText = document.getElementById('apexText');
+      apexIcon.className = `coverage-icon ${hasApex ? 'yes' : 'no'}`;
+      apexText.textContent = hasApex ? 'Apex domain covered' : 'Apex domain missing';
+    }
+
+    function updateDnsStatus(resolved) {
+      const el = document.getElementById('dnsStatus');
+      const text = document.getElementById('dnsText');
+      el.className = 'dns-status';
+
+      if (resolved === null) {
+        el.classList.add('unresolved');
+        text.textContent = 'DNS check unavailable';
+      } else if (resolved) {
+        el.classList.add('resolved');
+        text.textContent = 'DNS resolved — domain is reachable';
+      } else {
+        el.classList.add('unresolved');
+        text.textContent = 'DNS not resolved — domain may be unreachable';
+      }
     }
 
     function updateTimestamp() {
-      const now = new Date();
-      const formatted = now.toLocaleString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      });
-      document.getElementById('timestamp').textContent = `Last checked: ${formatted}`;
-    }
-
-    function showError(title, text) {
-      document.getElementById('errorTitle').textContent = title;
-      document.getElementById('errorText').textContent = text;
-      errorMessage.classList.add('visible');
-    }
-
-    function hideError() {
-      errorMessage.classList.remove('visible');
+      document.getElementById('timestamp').textContent =
+        `Checked at ${new Date().toLocaleString()}`;
     }
   </script>
 </body>

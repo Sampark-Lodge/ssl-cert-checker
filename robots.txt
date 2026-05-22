@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ssl-cert-checker.pages.dev/sitemap.xml
+Sitemap: https://sampark-lodge.github.io/ssl-cert-checker/sitemap.xml
